@@ -8,23 +8,47 @@
  * @format
  */
 
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Text, View, Pressable } from 'react-native';
+import Input from './input';
 import { StyleSheet } from 'react-native';
 
 const App = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <View style={styles.wrapper}>
-      <Text>{'Hello World'}</Text>
+      <View style={styles.header}>
+        <Text>{'Bem-vindo(a) à Taqtile!'}</Text>
+      </View>
+      <Input changeInputHandler={(input: string) => setEmail(input)} input={email} inputLabel={'Email'} />
+      <Input changeInputHandler={(input: string) => setPassword(input)} input={password} inputLabel={'Senha'} />
+      <Pressable style={styles.button}>
+        <Text style={styles.buttonText}>{'Entrar'}</Text>
+      </Pressable>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
-    justifyContent: 'center',
+    padding: '10%',
+  },
+  header: {
+    paddingTop: '50%',
     alignItems: 'center',
+  },
+  button: {
+    marginTop: '10%',
+    backgroundColor: '#a835de',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: '5%',
+    borderRadius: 10,
+  },
+  buttonText: {
+    color: 'white',
   },
 });
 
