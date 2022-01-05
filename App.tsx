@@ -16,6 +16,26 @@ import { StyleSheet } from 'react-native';
 const App = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [mispelling, setMispelling] = useState(false);
+  const [message, setMessage] = useState('');
+
+  const OnPressHandler = () => {
+    if (email === '' || password === '') {
+      setMessage('Preencha a senha e/ou email');
+      setMispelling(true);
+    } else if (email.split('.com').length < 2 || email.split('@').length < 2) {
+      setMessage('Insira um email válido');
+      setMispelling(true);
+    } else if (password.length < 7) {
+      setMessage('Insira um email válido');
+      setMispelling(true);
+    } else if (password.match('[A-Z]') == null || password.match('[a-z]') == null) {
+      setMessage('Sua senha deve ser composta por caractere minúsculo e maiúsculo');
+      setMispelling(true);
+    } else {
+      setMispelling(false);
+    }
+  };
 
   return (
     <View style={styles.wrapper}>
@@ -24,9 +44,10 @@ const App = () => {
       </View>
       <Input changeInputHandler={(input: string) => setEmail(input)} input={email} inputLabel={'Email'} />
       <Input changeInputHandler={(input: string) => setPassword(input)} input={password} inputLabel={'Senha'} />
-      <Pressable style={styles.button}>
+      <Pressable style={styles.button} onPress={OnPressHandler}>
         <Text style={styles.buttonText}>{'Entrar'}</Text>
       </Pressable>
+      {mispelling && <Text>{message}</Text>}
     </View>
   );
 };
