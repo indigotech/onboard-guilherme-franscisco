@@ -23,17 +23,18 @@ const App = () => {
     if (email === '' || password === '') {
       setMessage('Preencha a senha e/ou email');
       setMispelling(true);
-    } else if (email.split('.com').length < 2 || email.split('@').length < 2) {
+    } else if (!email.match(`.*@.*\\.com`)) {
       setMessage('Insira um email válido');
       setMispelling(true);
     } else if (password.length < 7) {
-      setMessage('Insira um email válido');
+      setMessage('Insira uma senha com pelo menos 7 caracteres');
       setMispelling(true);
     } else if (password.match('[A-Z]') == null || password.match('[a-z]') == null) {
       setMessage('Sua senha deve ser composta por caractere minúsculo e maiúsculo');
       setMispelling(true);
     } else {
       setMispelling(false);
+      setMessage('');
     }
   };
 
@@ -43,7 +44,12 @@ const App = () => {
         <Text>{'Bem-vindo(a) à Taqtile!'}</Text>
       </View>
       <Input changeInputHandler={(input: string) => setEmail(input)} input={email} inputLabel={'Email'} />
-      <Input changeInputHandler={(input: string) => setPassword(input)} input={password} inputLabel={'Senha'} />
+      <Input
+        changeInputHandler={(input: string) => setPassword(input)}
+        input={password}
+        inputLabel={'Senha'}
+        secureTextEntry={true}
+      />
       <Pressable style={styles.button} onPress={OnPressHandler}>
         <Text style={styles.buttonText}>{'Entrar'}</Text>
       </Pressable>
