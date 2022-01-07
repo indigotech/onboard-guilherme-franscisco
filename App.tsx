@@ -19,7 +19,7 @@ const App = () => {
   const [mispelling, setMispelling] = useState(false);
   const [message, setMessage] = useState('');
 
-  const OnPressHandler = () => {
+  const handlePress = () => {
     if (email === '' || password === '') {
       setMessage('Preencha a senha e/ou email');
       setMispelling(true);
@@ -50,7 +50,7 @@ const App = () => {
         inputLabel={'Senha'}
         secureTextEntry={true}
       />
-      <Pressable style={styles.button} onPress={OnPressHandler}>
+      <Pressable style={styles.button} onPress={handlePress}>
         <Text style={styles.buttonText}>{'Entrar'}</Text>
       </Pressable>
       {mispelling && <Text>{message}</Text>}
