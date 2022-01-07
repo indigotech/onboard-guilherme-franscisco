@@ -12,14 +12,14 @@ import React from 'react';
 import Login from './login-page';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
-const App = () => {
+const App = (props: any) => {
   const client = new ApolloClient({
     uri: 'https://tq-template-server-sample.herokuapp.com/graphql',
     cache: new InMemoryCache(),
   });
   return (
     <ApolloProvider client={client}>
-      <Login />
+      <Login componentId={props.componentId} />
     </ApolloProvider>
   );
 };

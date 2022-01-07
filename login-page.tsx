@@ -8,7 +8,7 @@ import { loginMutation } from './graphql-requests';
 import { loginValidation } from './login-validations';
 import { Navigation } from 'react-native-navigation';
 
-const LoginPage = () => {
+const LoginPage = (props: { componentId: string }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showMessage, setShowMessage] = useState(false);
@@ -20,6 +20,18 @@ const LoginPage = () => {
     try {
       const data = await login({ variables: { email: email, password: password } });
       await AsyncStorage.setItem('token', data.data.login.token);
+      Navigation.push(props.componentId, {
+        component: {
+          name: 'Settings',
+          options: {
+            topBar: {
+              title: {
+                text: 'Settings',
+              },
+            },
+          },
+        },
+      });
     } catch (error) {
       setMessage(error.message);
     }
@@ -74,6 +86,14 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
+const SettingsScreen = () => {
+  return (
+    <View>
+      <Text>Settings Screen</Text>
+    </View>
+  );
+};
 
 export default LoginPage;
 Navigation.registerComponent('Login', () => LoginPage);
+Navigation.registerComponent('Settings', () => SettingsScreen);
