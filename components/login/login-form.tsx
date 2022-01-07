@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
 const SettingsScreen = () => {
   return (
     <View>
-      <Text>Settings Screen</Text>
+      <Text>Another page</Text>
     </View>
   );
 };
