@@ -8,7 +8,7 @@ import { AsyncStorage } from 'react-native';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [mispelling, setMispelling] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
   const [message, setMessage] = useState('');
 
   const loginMutation = gql`
@@ -20,17 +20,13 @@ const Login = () => {
   `;
   const [login] = useMutation(loginMutation);
 
-  const OnPressHandler = () => {
+  const handlePress = () => {
     if (email === '' || password === '') {
       setMessage('Preencha a senha e/ou email');
     } else if (!email.match(`.*@.*\\.com`)) {
       setMessage('Insira um email válido');
     } else if (password.length < 7) {
       setMessage('Insira uma senha com pelo menos 7 caracteres');
-      setMispelling(true);
-    } else if (password.match('[A-Z]') == null || password.match('[a-z]') == null) {
-      setMessage('Sua senha deve ser composta por caractere minúsculo e maiúsculo');
-      setMispelling(true);
     } else {
       login({ variables: { email: email, password: password } })
         .then(async (data: any) => {
@@ -42,11 +38,10 @@ const Login = () => {
           }
         })
         .catch((e: Error) => {
-          setMispelling(true);
           setMessage(e.message);
         });
     }
-    setMispelling(true);
+    setShowMessage(true);
   };
 
   return (
@@ -61,10 +56,10 @@ const Login = () => {
         inputLabel={'Senha'}
         secureTextEntry={true}
       />
-      <Pressable style={styles.button} onPress={OnPressHandler}>
+      <Pressable style={styles.button} onPress={handlePress}>
         <Text style={styles.buttonText}>{'Entrar'}</Text>
       </Pressable>
-      {mispelling && <Text>{message}</Text>}
+      {showMessage && <Text>{message}</Text>}
     </View>
   );
 };
