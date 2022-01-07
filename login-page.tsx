@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native';
 import { gql, useMutation } from '@apollo/client';
 import { AsyncStorage } from 'react-native';
 
-const Login = () => {
+const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showMessage, setShowMessage] = useState(false);
@@ -23,7 +23,7 @@ const Login = () => {
   const handlePress = () => {
     if (email === '' || password === '') {
       setMessage('Preencha a senha e/ou email');
-    } else if (!email.match(`.*@.*\\.com`)) {
+    } else if (!email.match(`.*@.*\\.com.*`)) {
       setMessage('Insira um email válido');
     } else if (password.length < 7) {
       setMessage('Insira uma senha com pelo menos 7 caracteres');
@@ -85,4 +85,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login;
+export default LoginPage;
