@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, Pressable } from 'react-native';
+import { Text, View, Pressable, ActivityIndicator } from 'react-native';
 import Input from './input';
 import { StyleSheet } from 'react-native';
 import { useMutation } from '@apollo/client';
@@ -13,11 +13,13 @@ const LoginPage = (props: { componentId: string }) => {
   const [password, setPassword] = useState('');
   const [showMessage, setShowMessage] = useState(false);
   const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const [login] = useMutation(loginMutation);
 
   const loginRequest = async () => {
     try {
+      setIsLoading(true);
       const data = await login({ variables: { email: email, password: password } });
       await AsyncStorage.setItem('token', data.data.login.token);
       Navigation.push(props.componentId, {
@@ -34,6 +36,8 @@ const LoginPage = (props: { componentId: string }) => {
       });
     } catch (error) {
       setMessage(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -58,8 +62,9 @@ const LoginPage = (props: { componentId: string }) => {
         inputLabel={'Senha'}
         secureTextEntry={true}
       />
-      <Pressable style={styles.button} onPress={handlePress}>
-        <Text style={styles.buttonText}>{'Entrar'}</Text>
+      <Pressable style={styles.button} onPress={isLoading ? () => {} : handlePress} disabled={isLoading}>
+        {isLoading && <ActivityIndicator />}
+        <Text style={styles.buttonText}>{isLoading ? 'Carregando' : 'Entrar'}</Text>
       </Pressable>
       {showMessage && <Text>{message}</Text>}
     </View>
@@ -89,7 +94,7 @@ const styles = StyleSheet.create({
 const SettingsScreen = () => {
   return (
     <View>
-      <Text>Settings Screen</Text>
+      <Text>Another page</Text>
     </View>
   );
 };
