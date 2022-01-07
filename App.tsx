@@ -16,24 +16,24 @@ import { StyleSheet } from 'react-native';
 const App = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [mispelling, setMispelling] = useState(false);
+  const [misspelling, setMisspelling] = useState(false);
   const [message, setMessage] = useState('');
 
   const handlePress = () => {
     if (email === '' || password === '') {
       setMessage('Preencha a senha e/ou email');
-      setMispelling(true);
+      setMisspelling(true);
     } else if (!email.match(`.*@.*\\.com`)) {
       setMessage('Insira um email válido');
-      setMispelling(true);
+      setMisspelling(true);
     } else if (password.length < 7) {
       setMessage('Insira uma senha com pelo menos 7 caracteres');
-      setMispelling(true);
+      setMisspelling(true);
     } else if (password.match('[A-Z]') == null || password.match('[a-z]') == null) {
       setMessage('Sua senha deve ser composta por caractere minúsculo e maiúsculo');
-      setMispelling(true);
+      setMisspelling(true);
     } else {
-      setMispelling(false);
+      setMisspelling(false);
       setMessage('');
     }
   };
@@ -53,7 +53,7 @@ const App = () => {
       <Pressable style={styles.button} onPress={handlePress}>
         <Text style={styles.buttonText}>{'Entrar'}</Text>
       </Pressable>
-      {mispelling && <Text>{message}</Text>}
+      {misspelling && <Text>{message}</Text>}
     </View>
   );
 };
