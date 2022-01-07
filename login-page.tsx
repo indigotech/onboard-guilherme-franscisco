@@ -6,6 +6,7 @@ import { useMutation } from '@apollo/client';
 import { AsyncStorage } from 'react-native';
 import { loginMutation } from './graphql-requests';
 import { loginValidation } from './login-validations';
+import { Navigation } from 'react-native-navigation';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -75,3 +76,4 @@ const styles = StyleSheet.create({
 });
 
 export default LoginPage;
+Navigation.registerComponent('Login', () => LoginPage);
