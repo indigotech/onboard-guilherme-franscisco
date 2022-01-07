@@ -5,8 +5,8 @@ import { StyleSheet } from 'react-native';
 import { useMutation } from '@apollo/client';
 import { AsyncStorage } from 'react-native';
 import { loginMutation } from '../utils/graphql-requests';
-import { loginValidation } from './login-validations';
 import { Navigation } from 'react-native-navigation';
+import { loginValidation } from './login-validations';
 
 export const LoginForms = (props: { componentId: string }) => {
   const [email, setEmail] = useState('');
@@ -66,7 +66,7 @@ export const LoginForms = (props: { componentId: string }) => {
         inputLabel={'Senha'}
         secureTextEntry={true}
       />
-      <Pressable style={styles.button} onPress={isLoading ? () => {} : handlePress} disabled={isLoading}>
+      <Pressable style={styles.button} onPress={handlePress} disabled={isLoading}>
         {isLoading && <ActivityIndicator />}
         <Text style={styles.buttonText}>{isLoading ? 'Carregando' : 'Entrar'}</Text>
       </Pressable>
