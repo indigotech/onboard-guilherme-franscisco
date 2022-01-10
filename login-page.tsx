@@ -17,23 +17,27 @@ const LoginPage = (props: { componentId: string }) => {
 
   const [login] = useMutation(loginMutation);
 
+  const changeNavigation = () => {
+    Navigation.push(props.componentId, {
+      component: {
+        name: 'Settings',
+        options: {
+          topBar: {
+            title: {
+              text: 'Settings',
+            },
+          },
+        },
+      },
+    });
+  };
+
   const loginRequest = async () => {
     try {
       setIsLoading(true);
       const data = await login({ variables: { email: email, password: password } });
       await AsyncStorage.setItem('token', data.data.login.token);
-      Navigation.push(props.componentId, {
-        component: {
-          name: 'Settings',
-          options: {
-            topBar: {
-              title: {
-                text: 'Settings',
-              },
-            },
-          },
-        },
-      });
+      changeNavigation();
     } catch (error) {
       setMessage(error.message);
     } finally {
@@ -91,14 +95,6 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
-const SettingsScreen = () => {
-  return (
-    <View>
-      <Text>Another page</Text>
-    </View>
-  );
-};
 
 export default LoginPage;
 Navigation.registerComponent('Login', () => LoginPage);
-Navigation.registerComponent('Settings', () => SettingsScreen);
