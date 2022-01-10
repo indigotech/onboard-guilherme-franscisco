@@ -4,12 +4,7 @@ import { Input } from '../utils/input';
 import { StyleSheet } from 'react-native';
 import { useMutation } from '@apollo/client';
 import { AsyncStorage } from 'react-native';
-<<<<<<< HEAD:components/login/login-form.tsx
 import { loginMutation } from '../utils/graphql-requests';
-=======
-import { loginMutation } from './graphql-requests';
-import { loginValidation } from './login-validations';
->>>>>>> 5d1890a (Navigating  to a blank page):login-page.tsx
 import { Navigation } from 'react-native-navigation';
 import { loginValidation } from './login-validations';
 
@@ -100,16 +95,3 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
-<<<<<<< HEAD:components/login/login-form.tsx
-=======
-const SettingsScreen = () => {
-  return (
-    <View>
-      <Text>Another page</Text>
-    </View>
-  );
-};
-
-export default LoginPage;
-Navigation.registerComponent('Login', () => LoginPage);
->>>>>>> 5d1890a (Navigating  to a blank page):login-page.tsx
