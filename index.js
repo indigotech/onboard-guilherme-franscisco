@@ -4,11 +4,34 @@
 import React from 'react';
 import { Navigation } from 'react-native-navigation';
 import App from './App';
+import { AppProviders } from './app-providers';
+import UserListScreen from './user-list';
 
 const HomeScreen = (props) => {
   return <App componentId={props.componentId} />;
 };
-Navigation.registerComponent('Home', () => HomeScreen);
+Navigation.registerComponent(
+  'Home',
+  () => (props) =>
+    (
+      <AppProviders>
+        <HomeScreen {...props} />
+      </AppProviders>
+    ),
+  () => HomeScreen,
+);
+
+Navigation.registerComponent(
+  'UserListScreen',
+  () => (props) =>
+    (
+      <AppProviders>
+        <UserListScreen {...props} />
+      </AppProviders>
+    ),
+  () => UserListScreen,
+);
+
 Navigation.events().registerAppLaunchedListener(async () => {
   Navigation.setRoot({
     root: {
