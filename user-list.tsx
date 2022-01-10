@@ -8,7 +8,7 @@
  * @format
  */
 import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
 import { gql, useQuery } from '@apollo/client';
 
 const UserListScreen = () => {
@@ -26,15 +26,20 @@ const UserListScreen = () => {
   const { loading, error, data } = useQuery(getUsers);
   return (
     <View style={styles.container}>
-      <FlatList
-        data={data?.users.nodes}
-        renderItem={({ item }) => (
-          <>
-            <Text style={styles.item}>{`Nome : ${item.name}`}</Text>
-            <Text style={styles.item}>{`Email : ${item.email}`}</Text>
-          </>
-        )}
-      />
+      {loading ? (
+        <ActivityIndicator />
+      ) : (
+        <FlatList
+          data={data?.users.nodes}
+          renderItem={({ item }) => (
+            <>
+              <Text style={styles.item}>{`Nome : ${item.name}`}</Text>
+              <Text style={styles.item}>{`Email : ${item.email}`}</Text>
+            </>
+          )}
+        />
+      )}
+      {error ?? <Text>{error}</Text>}
     </View>
   );
 };
