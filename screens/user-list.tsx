@@ -3,6 +3,7 @@ import { View, Text, FlatList, StyleSheet, ActivityIndicator } from 'react-nativ
 import { useQuery } from '@apollo/client';
 import { getUsers } from '../components/utils/graphql-requests';
 import { UserType } from '../components/interfaces/user-type';
+import { Navigation } from 'react-native-navigation';
 
 const limit = 10;
 
@@ -36,6 +37,13 @@ export const UserListScreen = () => {
       </>
     );
   };
+  const changeNavigation = () => {
+    Navigation.push(props.componentId, {
+      component: {
+        name: 'UserSignUpScreen',
+      },
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -55,5 +63,12 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 14,
     height: 44,
+  },
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    zIndex: 5,
   },
 });

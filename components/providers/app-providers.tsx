@@ -2,6 +2,7 @@ import { createHttpLink, ApolloClient, InMemoryCache, ApolloProvider } from '@ap
 import { AsyncStorage } from 'react-native';
 import { setContext } from '@apollo/client/link/context';
 import React from 'react';
+import { Provider as PaperProvider } from 'react-native-paper';
 
 const httpLink = createHttpLink({
   uri: 'https://tq-template-server-sample.herokuapp.com/graphql',
@@ -24,5 +25,9 @@ const client = new ApolloClient({
 });
 
 export const AppProviders: React.FC = (props) => {
-  return <ApolloProvider client={client}>{props.children}</ApolloProvider>;
+  return (
+    <ApolloProvider client={client}>
+      <PaperProvider>{props.children}</PaperProvider>
+    </ApolloProvider>
+  );
 };

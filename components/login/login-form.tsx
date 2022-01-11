@@ -21,13 +21,6 @@ export const LoginForms = (props: { componentId: string }) => {
     Navigation.push(props.componentId, {
       component: {
         name: 'UserListScreen',
-        options: {
-          topBar: {
-            title: {
-              text: 'Lista de Usuários',
-            },
-          },
-        },
       },
     });
   };
