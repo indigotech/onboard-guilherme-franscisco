@@ -4,8 +4,8 @@
 import React from 'react';
 import { Navigation } from 'react-native-navigation';
 import App from './App';
-import { AppProviders } from './app-providers';
-import UserListScreen from './user-list';
+import { AppProviders } from './components/providers/app-providers';
+import UserListScreen from './screens/user-list';
 
 const HomeScreen = (props) => {
   return <App componentId={props.componentId} />;

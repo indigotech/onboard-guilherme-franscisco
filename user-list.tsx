@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
 import { useQuery } from '@apollo/client';
-import { getUsers } from './graphql-requests';
+import { getUsers } from './components/utils/graphql-requests';
 
 export const UserListScreen = () => {
   const { loading, error, data } = useQuery(getUsers);

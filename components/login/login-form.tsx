@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Text, View, Pressable, ActivityIndicator } from 'react-native';
-import { Input } from './input';
+import { Input } from '../utils/input';
 import { StyleSheet } from 'react-native';
 import { useMutation } from '@apollo/client';
 import { AsyncStorage } from 'react-native';
-import { loginMutation } from './graphql-requests';
+import { loginMutation } from '../utils/graphql-requests';
 import { loginValidation } from './login-validations';
 import { Navigation } from 'react-native-navigation';
 
