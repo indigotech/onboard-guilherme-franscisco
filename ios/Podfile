@@ -13,7 +13,10 @@ target 'FreezeProject' do
     :hermes_enabled => false
   )
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 74dae2a (Added forms in order to save more users)
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   target 'FreezeProjectTests' do

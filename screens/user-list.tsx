@@ -8,7 +8,7 @@ import { FAB } from 'react-native-paper';
 
 const limit = 10;
 
-export const UserListScreen = () => {
+export const UserListScreen = (props: { componentId: string }) => {
   const offsetRef = useRef(0);
 
   const [users, setUser] = React.useState<UserType[]>([]);
