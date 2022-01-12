@@ -12,7 +12,7 @@ interface InputProps {
 export const Input = (props: InputProps) => {
   return (
     <View>
-      <Text style={styles.inputLabel}>{`${props.inputLabel}`}</Text>
+      <Text style={styles.inputLabel}>{`${props.inputLabel}:`}</Text>
       <TextInput
         style={styles.inputText}
         onChangeText={props.changeInputHandler}

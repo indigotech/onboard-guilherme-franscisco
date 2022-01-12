@@ -353,6 +353,10 @@ PODS:
     - React-Core
   - RNCPicker (2.2.1):
     - React-Core
+  - RNDateTimePicker (5.1.0):
+    - React-Core
+  - RNVectorIcons (9.0.0):
+    - React-Core
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -420,10 +424,15 @@ DEPENDENCIES:
 =======
   - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
 <<<<<<< HEAD
+<<<<<<< HEAD
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
 >>>>>>> 7de760c (Added forms in order to save more users)
 =======
 >>>>>>> 3bb8071 (Added react native icons and paper)
+=======
+  - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
+>>>>>>> 31c6fa1 (Added validations for signupscreen and datapicker for datas)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -516,11 +525,18 @@ EXTERNAL SOURCES:
   RNCPicker:
     :path: "../node_modules/@react-native-picker/picker"
 <<<<<<< HEAD
+<<<<<<< HEAD
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
 >>>>>>> 7de760c (Added forms in order to save more users)
 =======
 >>>>>>> 3bb8071 (Added react native icons and paper)
+=======
+  RNDateTimePicker:
+    :path: "../node_modules/@react-native-community/datetimepicker"
+  RNVectorIcons:
+    :path: "../node_modules/react-native-vector-icons"
+>>>>>>> 31c6fa1 (Added validations for signupscreen and datapicker for datas)
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -576,9 +592,12 @@ SPEC CHECKSUMS:
 <<<<<<< HEAD
   RNCAsyncStorage: cb9a623793918c6699586281f0b51cbc38f046f9
   RNCPicker: cb57c823d5ce8d2d0b5dfb45ad97b737260dc59e
+  RNDateTimePicker: cad741dac386f8178bf76e86f0a3c4b22173e0e4
+  RNVectorIcons: 4143ba35feebab8fdbe6bc43d1e776b393d47ac8
   Yoga: e7dc4e71caba6472ff48ad7d234389b91dadc280
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 PODFILE CHECKSUM: d6b8557bc984bb1272c93330d425fd9971bb95b3
@@ -595,5 +614,8 @@ PODFILE CHECKSUM: 16a36030d313cc702033aa0852769ae7ec7f8314
 =======
 PODFILE CHECKSUM: 839c9d5f2e5d4214a9525bb59a9e6ae41aef8d97
 >>>>>>> 3bb8071 (Added react native icons and paper)
+=======
+PODFILE CHECKSUM: 3d46ef2b4587357e6e942f3552b7abc753c667cd
+>>>>>>> 31c6fa1 (Added validations for signupscreen and datapicker for datas)
 
 COCOAPODS: 1.11.2
