@@ -353,11 +353,8 @@ PODS:
     - React-Core
   - RNCPicker (2.2.1):
     - React-Core
-<<<<<<< HEAD
   - RNDateTimePicker (5.1.0):
     - React-Core
-=======
->>>>>>> 74dae2a (Added forms in order to save more users)
   - RNVectorIcons (9.0.0):
     - React-Core
   - Yoga (1.14.0)
@@ -420,6 +417,7 @@ DEPENDENCIES:
   - ReactNativeNavigation (from `../node_modules/react-native-navigation`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
 <<<<<<< HEAD
+<<<<<<< HEAD
   - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -433,6 +431,11 @@ DEPENDENCIES:
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
 >>>>>>> 7de760c (Added forms in order to save more users)
 >>>>>>> 74dae2a (Added forms in order to save more users)
+=======
+  - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
+  - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
+>>>>>>> 7a21093 (Rebase feature/navigation and typing functions arguments)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -517,6 +520,7 @@ EXTERNAL SOURCES:
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-community/async-storage"
 <<<<<<< HEAD
+<<<<<<< HEAD
   RNCPicker:
     :path: "../node_modules/@react-native-picker/picker"
   RNDateTimePicker:
@@ -535,6 +539,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-vector-icons"
 >>>>>>> 7de760c (Added forms in order to save more users)
 >>>>>>> 74dae2a (Added forms in order to save more users)
+=======
+  RNCPicker:
+    :path: "../node_modules/@react-native-picker/picker"
+  RNDateTimePicker:
+    :path: "../node_modules/@react-native-community/datetimepicker"
+  RNVectorIcons:
+    :path: "../node_modules/react-native-vector-icons"
+>>>>>>> 7a21093 (Rebase feature/navigation and typing functions arguments)
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -594,6 +606,7 @@ SPEC CHECKSUMS:
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 PODFILE CHECKSUM: 3d46ef2b4587357e6e942f3552b7abc753c667cd
 =======
 <<<<<<< HEAD
@@ -609,5 +622,8 @@ PODFILE CHECKSUM: 11550403726bb38892421616f1ea025cebaa420f
 PODFILE CHECKSUM: 16a36030d313cc702033aa0852769ae7ec7f8314
 >>>>>>> 7de760c (Added forms in order to save more users)
 >>>>>>> 74dae2a (Added forms in order to save more users)
+=======
+PODFILE CHECKSUM: 3d46ef2b4587357e6e942f3552b7abc753c667cd
+>>>>>>> 7a21093 (Rebase feature/navigation and typing functions arguments)
 
 COCOAPODS: 1.11.2
