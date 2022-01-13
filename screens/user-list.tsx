@@ -3,24 +3,19 @@ import { View, Text, FlatList, StyleSheet, ActivityIndicator } from 'react-nativ
 import { useQuery } from '@apollo/client';
 import { getUsers } from '../components/utils/graphql-requests';
 
-const UserListScreen = () => {
+export const UserListScreen = () => {
   const [offset, setOffset] = useState(0);
 
-  const { loading, error, data, refetch } = useQuery(getUsers, {
+  const { loading, error, data } = useQuery(getUsers, {
     variables: { offset: offset },
     notifyOnNetworkStatusChange: true,
   });
 
   const [users, setUser] = useState(data?.users.nodes);
 
-  const UpdateOffset = () => {
-    const last = data.users.nodes.length - 1;
-
-    if (data?.users.nodes[last].id < data?.users.count) {
+  const handleEndReached = () => {
+    if (users.length + 10 < data?.users.count) {
       setOffset(offset + 10);
-      refetch({
-        offset: offset,
-      });
       setUser([...users, ...data?.users.nodes]);
     }
   };
@@ -28,8 +23,8 @@ const UserListScreen = () => {
   const renderItem = (item: any) => {
     return (
       <>
-        <Text style={styles.item}>{`Nome : ${item.name}`}</Text>
-        <Text style={styles.item}>{`Email : ${item.email}`}</Text>
+        <Text style={styles.item}>{`Nome : ${item.item.name}`}</Text>
+        <Text style={styles.item}>{`Email : ${item.item.email}`}</Text>
       </>
     );
   };
@@ -38,8 +33,8 @@ const UserListScreen = () => {
     <View style={styles.container}>
       <FlatList
         data={users}
-        onEndReached={UpdateOffset}
-        keyExtractor={(item, index) => String(index)}
+        onEndReached={handleEndReached}
+        keyExtractor={(_item, index) => String(index)}
         renderItem={renderItem}
       />
       {error ?? <Text>{error}</Text>}
@@ -59,4 +54,3 @@ const styles = StyleSheet.create({
     height: 44,
   },
 });
-export default UserListScreen;
