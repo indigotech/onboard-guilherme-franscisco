@@ -1,26 +1,47 @@
 import React, { useState } from 'react';
-import { Text, View, Pressable } from 'react-native';
+import { Text, View, Pressable, ActivityIndicator } from 'react-native';
 import Input from './input';
 import { StyleSheet } from 'react-native';
 import { useMutation } from '@apollo/client';
 import { AsyncStorage } from 'react-native';
 import { loginMutation } from './graphql-requests';
 import { loginValidation } from './login-validations';
+import { Navigation } from 'react-native-navigation';
 
-const LoginPage = () => {
+const LoginPage = (props: { componentId: string }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showMessage, setShowMessage] = useState(false);
   const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const [login] = useMutation(loginMutation);
 
+  const changeNavigation = () => {
+    Navigation.push(props.componentId, {
+      component: {
+        name: 'Settings',
+        options: {
+          topBar: {
+            title: {
+              text: 'Configurações',
+            },
+          },
+        },
+      },
+    });
+  };
+
   const loginRequest = async () => {
     try {
+      setIsLoading(true);
       const data = await login({ variables: { email: email, password: password } });
       await AsyncStorage.setItem('token', data.data.login.token);
+      changeNavigation();
     } catch (error) {
       setMessage(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -45,8 +66,9 @@ const LoginPage = () => {
         inputLabel={'Senha'}
         secureTextEntry={true}
       />
-      <Pressable style={styles.button} onPress={handlePress}>
-        <Text style={styles.buttonText}>{'Entrar'}</Text>
+      <Pressable style={styles.button} onPress={isLoading ? () => {} : handlePress} disabled={isLoading}>
+        {isLoading && <ActivityIndicator />}
+        <Text style={styles.buttonText}>{isLoading ? 'Carregando' : 'Entrar'}</Text>
       </Pressable>
       {showMessage && <Text>{message}</Text>}
     </View>

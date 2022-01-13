@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
     padding: '5%',
   },
   inputText: {
-    paddingTop: '10%',
     paddingLeft: '10%',
+    paddingTop: '5%',
     borderColor: 'gray',
     borderRadius: 20,
     borderWidth: 1,
