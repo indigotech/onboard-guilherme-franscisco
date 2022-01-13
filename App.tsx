@@ -9,9 +9,8 @@
  */
 
 import React from 'react';
-import LoginForms from './login-form';
+import { LoginForms } from './login-form';
 
-const App = (props: any) => {
+export const App = (props: any) => {
   return <LoginForms componentId={props.componentId} />;
 };
-export default App;

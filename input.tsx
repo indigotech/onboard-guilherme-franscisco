@@ -9,7 +9,7 @@ interface InputProps {
   secureTextEntry?: boolean;
 }
 
-const Input = (props: InputProps) => {
+export const Input = (props: InputProps) => {
   return (
     <View>
       <Text style={styles.inputLabel}>{props.inputLabel}</Text>
@@ -36,5 +36,3 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
 });
-
-export default Input;

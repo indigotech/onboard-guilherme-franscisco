@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View, Pressable, ActivityIndicator } from 'react-native';
-import Input from './input';
+import { Input } from './input';
 import { StyleSheet } from 'react-native';
 import { useMutation } from '@apollo/client';
 import { AsyncStorage } from 'react-native';
