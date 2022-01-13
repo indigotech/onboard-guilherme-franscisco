@@ -415,24 +415,10 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeNavigation (from `../node_modules/react-native-navigation`)
-<<<<<<< HEAD
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
-<<<<<<< HEAD
-=======
-  - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
->>>>>>> 7301017 (Solving the problem with AsyncStorage)
-=======
   - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
-<<<<<<< HEAD
-<<<<<<< HEAD
-  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
->>>>>>> 7de760c (Added forms in order to save more users)
-=======
->>>>>>> 3bb8071 (Added react native icons and paper)
-=======
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
->>>>>>> 31c6fa1 (Added validations for signupscreen and datapicker for datas)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -515,28 +501,13 @@ EXTERNAL SOURCES:
   ReactNativeNavigation:
     :podspec: "../node_modules/react-native-navigation"
   RNCAsyncStorage:
-<<<<<<< HEAD
     :path: "../node_modules/@react-native-community/async-storage"
-<<<<<<< HEAD
-=======
-    :path: "../node_modules/@react-native-async-storage/async-storage"
->>>>>>> 7301017 (Solving the problem with AsyncStorage)
-=======
   RNCPicker:
     :path: "../node_modules/@react-native-picker/picker"
-<<<<<<< HEAD
-<<<<<<< HEAD
-  RNVectorIcons:
-    :path: "../node_modules/react-native-vector-icons"
->>>>>>> 7de760c (Added forms in order to save more users)
-=======
->>>>>>> 3bb8071 (Added react native icons and paper)
-=======
   RNDateTimePicker:
     :path: "../node_modules/@react-native-community/datetimepicker"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
->>>>>>> 31c6fa1 (Added validations for signupscreen and datapicker for datas)
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -556,15 +527,11 @@ SPEC CHECKSUMS:
   Flipper-RSocket: d9d9ade67cbecf6ac10730304bf5607266dd2541
   FlipperKit: d8d346844eca5d9120c17d441a2f38596e8ed2b9
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
-<<<<<<< HEAD
   glog: 5337263514dd6f09803962437687240c5dc39aa4
-=======
-  glog: 43737235ae6a21de4f45297f4f73b6420fc2ecb2
->>>>>>> 7301017 (Solving the problem with AsyncStorage)
   HMSegmentedControl: 34c1f54d822d8308e7b24f5d901ec674dfa31352
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   OpenSSL-Universal: 1aa4f6a6ee7256b83db99ec1ccdaa80d10f9af9b
-  RCT-Folly: c7985206735d8e0fb45f0cfcfd18485969feff0b
+  RCT-Folly: a21c126816d8025b547704b777a2ba552f3d9fa9
   RCTRequired: 4bf86c70714490bca4bf2696148638284622644b
   RCTTypeSafety: c475a7059eb77935fa53d2c17db299893f057d5d
   React: f64af14e3f2c50f6f2c91a5fd250e4ff1b3c3459
@@ -589,7 +556,6 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: dec32ee6f2e2a26e13e58152271535fadff5455a
   ReactCommon: 57b69f6383eafcbd7da625bfa6003810332313c4
   ReactNativeNavigation: 0a768a3eb149e808ca28e12ffbca9b3efecb4ddf
-<<<<<<< HEAD
   RNCAsyncStorage: cb9a623793918c6699586281f0b51cbc38f046f9
   RNCPicker: cb57c823d5ce8d2d0b5dfb45ad97b737260dc59e
   RNDateTimePicker: cad741dac386f8178bf76e86f0a3c4b22173e0e4
@@ -597,25 +563,6 @@ SPEC CHECKSUMS:
   Yoga: e7dc4e71caba6472ff48ad7d234389b91dadc280
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-PODFILE CHECKSUM: d6b8557bc984bb1272c93330d425fd9971bb95b3
-=======
-  RNCAsyncStorage: 4b6538222ce3f01f61011f512226ba3aaa0dc336
-  Yoga: e7dc4e71caba6472ff48ad7d234389b91dadc280
-  YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
-
-PODFILE CHECKSUM: 11550403726bb38892421616f1ea025cebaa420f
->>>>>>> 7301017 (Solving the problem with AsyncStorage)
-=======
-PODFILE CHECKSUM: 16a36030d313cc702033aa0852769ae7ec7f8314
->>>>>>> 7de760c (Added forms in order to save more users)
-=======
-PODFILE CHECKSUM: 839c9d5f2e5d4214a9525bb59a9e6ae41aef8d97
->>>>>>> 3bb8071 (Added react native icons and paper)
-=======
 PODFILE CHECKSUM: 3d46ef2b4587357e6e942f3552b7abc753c667cd
->>>>>>> 31c6fa1 (Added validations for signupscreen and datapicker for datas)
 
 COCOAPODS: 1.11.2

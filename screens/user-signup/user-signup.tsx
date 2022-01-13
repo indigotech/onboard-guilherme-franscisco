@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ActivityIndicator, Button, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import { UserRoler } from '../../components/serializes/user-roles';
-import Input from '../../components/utils/input';
+import { Input } from '../../components/utils/input';
 import { Picker } from '@react-native-picker/picker';
 import { useMutation } from '@apollo/client';
 import { createUser } from '../../components/utils/graphql-requests';
@@ -9,7 +9,7 @@ import { signUpValidations } from './user-signup-validations';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Navigation } from 'react-native-navigation';
 
-const UserSignUpScreen = (props: { componentId: string }) => {
+export const UserSignUpScreen = (props: { componentId: string }) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [birthDate, setBirthDate] = useState(new Date());
@@ -59,8 +59,8 @@ const UserSignUpScreen = (props: { componentId: string }) => {
     setShowMessage(true);
   };
 
-  const onChangeHandler = (event: any, selectedDate: any) => {
-    if (event.type === 'set' || Platform.OS === 'ios') {
+  const onChangeHandler = (event: Event, selectedDate: Date | undefined) => {
+    if (selectedDate !== undefined) {
       setBirthDate(selectedDate);
       setShowBirthDate(selectedDate.toLocaleDateString().split('T')[0]);
     }
@@ -94,7 +94,7 @@ const UserSignUpScreen = (props: { componentId: string }) => {
         <Picker.Item label='Administrador' value={UserRoler.admin} />
       </Picker>
 
-      <Pressable style={styles.button} onPress={loading ? () => {} : handlePress} disabled={loading}>
+      <Pressable style={styles.button} onPress={handlePress} disabled={loading}>
         {loading && <ActivityIndicator />}
         <Text style={styles.buttonText}>{loading ? 'Carregando' : 'Cadastrar'}</Text>
       </Pressable>
@@ -120,5 +120,3 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
-
-export default UserSignUpScreen;
