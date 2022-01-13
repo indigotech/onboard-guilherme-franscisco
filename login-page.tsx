@@ -24,7 +24,7 @@ const LoginPage = (props: { componentId: string }) => {
         options: {
           topBar: {
             title: {
-              text: 'Settings',
+              text: 'Configurações',
             },
           },
         },
@@ -97,4 +97,3 @@ const styles = StyleSheet.create({
 });
 
 export default LoginPage;
-Navigation.registerComponent('Login', () => LoginPage);
