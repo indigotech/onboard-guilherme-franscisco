@@ -6,17 +6,21 @@ import { getUsers } from '../components/utils/graphql-requests';
 export const UserListScreen = () => {
   const [offset, setOffset] = useState(0);
 
+  const [users, setUser] = useState([]);
+
+  const onCompleted = (data: any) => {
+    console.log(data);
+    setUser((prev) => [...prev, ...data?.users.nodes] as any);
+  };
   const { loading, error, data } = useQuery(getUsers, {
     variables: { offset: offset },
     notifyOnNetworkStatusChange: true,
+    onCompleted: onCompleted,
   });
-
-  const [users, setUser] = useState(data?.users.nodes);
 
   const handleEndReached = () => {
     if (users.length + 10 < data?.users.count) {
       setOffset(offset + 10);
-      setUser([...users, ...data?.users.nodes]);
     }
   };
 
