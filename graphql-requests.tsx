@@ -7,3 +7,15 @@ export const loginMutation = gql`
     }
   }
 `;
+
+export const getUsers = gql`
+  query {
+    users {
+      nodes {
+        id
+        name
+        email
+      }
+    }
+  }
+`;

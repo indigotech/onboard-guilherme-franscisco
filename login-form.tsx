@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View, Pressable, ActivityIndicator } from 'react-native';
-import Input from './input';
+import { Input } from './input';
 import { StyleSheet } from 'react-native';
 import { useMutation } from '@apollo/client';
 import { AsyncStorage } from 'react-native';
@@ -8,7 +8,7 @@ import { loginMutation } from './graphql-requests';
 import { loginValidation } from './login-validations';
 import { Navigation } from 'react-native-navigation';
 
-const LoginPage = (props: { componentId: string }) => {
+export const LoginForms = (props: { componentId: string }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showMessage, setShowMessage] = useState(false);
@@ -20,11 +20,11 @@ const LoginPage = (props: { componentId: string }) => {
   const changeNavigation = () => {
     Navigation.push(props.componentId, {
       component: {
-        name: 'Settings',
+        name: 'UserListScreen',
         options: {
           topBar: {
             title: {
-              text: 'Configurações',
+              text: 'Lista de Usuários',
             },
           },
         },
@@ -95,5 +95,3 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
-
-export default LoginPage;

@@ -9,19 +9,8 @@
  */
 
 import React from 'react';
-import Login from './login-page';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { LoginForms } from './login-form';
 
-const App = (props: any) => {
-  const client = new ApolloClient({
-    uri: 'https://tq-template-server-sample.herokuapp.com/graphql',
-    cache: new InMemoryCache(),
-  });
-  return (
-    <ApolloProvider client={client}>
-      <Login componentId={props.componentId} />
-    </ApolloProvider>
-  );
+export const App = (props: any) => {
+  return <LoginForms componentId={props.componentId} />;
 };
-
-export default App;
