@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import { getUsers } from '../components/utils/graphql-requests';
 import { UserType } from '../components/interfaces/user-type';
 import { Navigation } from 'react-native-navigation';
-import { UserType } from '../components/interfaces/UserType';
+import { UserType } from '../components/interfaces/user-type';
 
 const limit = 10;
 
