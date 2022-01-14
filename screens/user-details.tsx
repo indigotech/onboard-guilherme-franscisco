@@ -1,7 +1,8 @@
 import { useQuery } from '@apollo/client';
 import React from 'react';
-import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
+import { View, Text, ActivityIndicator } from 'react-native';
 import { Avatar, Button, Headline, Subheading } from 'react-native-paper';
+import styled from 'styled-components/native';
 import { getUser } from '../components/utils/graphql-requests';
 
 export const UserDetails = (props: { id: string }) => {
@@ -22,7 +23,7 @@ export const UserDetails = (props: { id: string }) => {
       {loading ? (
         <ActivityIndicator color='black' />
       ) : (
-        <View style={styles.wrapper}>
+        <Wrapper>
           <Avatar.Text label={`${data.user.name.substring(0, 2)}`} />
           <Headline>{data.user.name}</Headline>
           <Subheading>{data.user.birthDate.toString().split('-').reverse().join('/')}</Subheading>
@@ -33,16 +34,14 @@ export const UserDetails = (props: { id: string }) => {
           <Button icon='phone' mode='text'>
             {data.user.phone}
           </Button>
-        </View>
+        </Wrapper>
       )}
       {error ?? <Text>{error}</Text>}
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  wrapper: {
-    padding: '10%',
-    alignItems: 'center',
-  },
-});
+const Wrapper = styled.View`
+  padding: 10%;
+  align-items: center;
+`;

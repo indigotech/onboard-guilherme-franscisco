@@ -1,10 +1,12 @@
 import React, { useRef } from 'react';
-import { View, Text, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
+import { FlatList, ActivityIndicator } from 'react-native';
 import { useQuery } from '@apollo/client';
 import { getUsers } from '../components/utils/graphql-requests';
 import { UserType } from '../components/interfaces/user-type';
 import { Button, FAB } from 'react-native-paper';
 import { Navigation } from 'react-native-navigation';
+import styled from 'styled-components/native';
+import { Caption } from '../components/styled-components/caption';
 
 const limit = 10;
 
@@ -43,13 +45,13 @@ export const UserListScreen = (props: { componentId: string }) => {
 
   const renderItem = (item: { item: UserType }) => {
     return (
-      <View style={styles.user}>
-        <Text style={styles.item}>{`Nome : ${item.item.name}`}</Text>
-        <Text style={styles.item}>{`Email : ${item.item.email}`}</Text>
+      <UserView>
+        <UserData>{`Nome : ${item.item.name}`}</UserData>
+        <UserData>{`Email : ${item.item.email}`}</UserData>
         <Button mode='outlined' onPress={() => handleButtonPress(item.item.id)}>
           Ver perfil
         </Button>
-      </View>
+      </UserView>
     );
   };
   const handleFABPress = () => {
@@ -67,35 +69,37 @@ export const UserListScreen = (props: { componentId: string }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <FAB style={styles.fab} small icon='plus' onPress={handleFABPress} />
+    <Container>
+      <Fab small icon='plus' onPress={handleFABPress} />
       <FlatList data={users} onEndReached={handleEndReached} keyExtractor={(item) => item.id} renderItem={renderItem} />
-      {error ?? <Text>{error}</Text>}
+      {error ?? <Caption>{error}</Caption>}
       {loading && <ActivityIndicator color='black' />}
-    </View>
+    </Container>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 22,
-  },
-  item: {
-    padding: 10,
-    fontSize: 14,
-    height: 44,
-  },
-  fab: {
-    position: 'absolute',
-    margin: 16,
-    right: 0,
-    bottom: 0,
-    zIndex: 5,
-  },
-  user: {
-    borderStyle: 'solid',
-    borderWidth: 3,
-    marginBottom: 5,
-  },
-});
+const Container = styled.View`
+  flex: 1;
+  padding-top: 22px;
+`;
+
+const Fab = styled(FAB)`
+  position: absolute;
+  margin: 16px;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+`;
+
+const UserView = styled.View`
+  border-style: solid;
+  border-right-width: 0px;
+  border-left-width: 0px;
+  border-width: 3px;
+  margin-bottom: 5px;
+`;
+const UserData = styled.Text`
+  padding: 10px;
+  font-size: 14px;
+  height: 44px;
+`;
