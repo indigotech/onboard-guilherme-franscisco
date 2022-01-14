@@ -4,11 +4,11 @@ import { useQuery } from '@apollo/client';
 import { getUsers } from '../components/utils/graphql-requests';
 import { UserType } from '../components/interfaces/user-type';
 import { Navigation } from 'react-native-navigation';
-import { UserType } from '../components/interfaces/user-type';
+import { FAB } from 'react-native-paper';
 
 const limit = 10;
 
-export const UserListScreen = () => {
+export const UserListScreen = (props: { componentId: string }) => {
   const offsetRef = useRef(0);
 
   const [users, setUser] = React.useState<UserType[]>([]);
@@ -48,6 +48,7 @@ export const UserListScreen = () => {
 
   return (
     <View style={styles.container}>
+      <FAB style={styles.fab} small icon='plus' onPress={changeNavigation} />
       <FlatList data={users} onEndReached={handleEndReached} keyExtractor={(item) => item.id} renderItem={renderItem} />
       {error ?? <Text>{error}</Text>}
       {loading && <ActivityIndicator color='black' />}
