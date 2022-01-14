@@ -28,3 +28,15 @@ export const createUser = gql`
     }
   }
 `;
+
+export const getUser = gql`
+  query getUser($id: ID!) {
+    user(id: $id) {
+      name
+      phone
+      birthDate
+      email
+      role
+    }
+  }
+`;

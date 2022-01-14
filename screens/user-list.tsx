@@ -3,8 +3,8 @@ import { View, Text, FlatList, StyleSheet, ActivityIndicator } from 'react-nativ
 import { useQuery } from '@apollo/client';
 import { getUsers } from '../components/utils/graphql-requests';
 import { UserType } from '../components/interfaces/user-type';
+import { Button, FAB } from 'react-native-paper';
 import { Navigation } from 'react-native-navigation';
-import { FAB } from 'react-native-paper';
 
 const limit = 10;
 
@@ -30,12 +30,26 @@ export const UserListScreen = (props: { componentId: string }) => {
     onCompleted: onCompleted,
   });
 
+  const handleButtonPress = (id: string) => {
+    Navigation.push(props.componentId, {
+      component: {
+        name: 'UserDetails',
+        passProps: {
+          id: id,
+        },
+      },
+    });
+  };
+
   const renderItem = (item: { item: UserType }) => {
     return (
-      <>
+      <View style={styles.user}>
         <Text style={styles.item}>{`Nome : ${item.item.name}`}</Text>
         <Text style={styles.item}>{`Email : ${item.item.email}`}</Text>
-      </>
+        <Button mode='outlined' onPress={() => handleButtonPress(item.item.id)}>
+          {'Ver perfil'}
+        </Button>
+      </View>
     );
   };
   const handleFABPress = () => {
@@ -78,5 +92,10 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 0,
     zIndex: 5,
+  },
+  user: {
+    borderStyle: 'solid',
+    borderWidth: 3,
+    marginBottom: 5,
   },
 });
