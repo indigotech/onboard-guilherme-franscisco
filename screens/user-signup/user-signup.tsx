@@ -17,20 +17,15 @@ export const UserSignUpScreen = (props: { componentId: string }) => {
 
   const [email, setEmail] = useState('');
   const [role, setRole] = useState(UserRoler.user);
+  const [messageValidation, setMessageValidation] = useState('');
+  const [showMessageValidation, setShowMessageValidation] = useState(false);
 
-  const [message, setMessage] = useState('');
-  const [showMessage, setShowMessage] = useState(false);
-
-  const [show, setShow] = useState(false);
+  const [showDatePicker, setShowDatePicker] = useState(Platform.OS === 'ios');
 
   const [signUp, { loading }] = useMutation(createUser);
 
-  const changeNavigation = () => {
-    Navigation.push(props.componentId, {
-      component: {
-        name: 'UserListScreen',
-      },
-    });
+  const dismissModal = () => {
+    Navigation.dismissModal(props.componentId);
   };
 
   const signUpRequest = async () => {
@@ -44,27 +39,27 @@ export const UserSignUpScreen = (props: { componentId: string }) => {
           role: UserRoler[role],
         },
       });
-      changeNavigation();
+      dismissModal();
     } catch (err) {
-      setMessage(err.message);
+      setMessageValidation(err.message);
     }
   };
 
   const handlePress = async () => {
     const [msg, valid] = signUpValidations(name, phone, birthDate, email);
-    setMessage(msg);
+    setMessageValidation(msg);
     if (valid) {
       signUpRequest();
     }
-    setShowMessage(true);
+    setShowMessageValidation(true);
   };
 
-  const onChangeHandler = (event: Event, selectedDate: Date | undefined) => {
+  const handleDatePickerChange = (event: Event, selectedDate: Date | undefined) => {
     if (selectedDate !== undefined) {
       setBirthDate(selectedDate);
       setShowBirthDate(selectedDate.toLocaleDateString().split('T')[0]);
     }
-    setShow(Platform.OS === 'ios');
+    setShowDatePicker(Platform.OS === 'ios');
   };
 
   return (
@@ -74,16 +69,18 @@ export const UserSignUpScreen = (props: { componentId: string }) => {
 
       <View>
         <Text>{`Data de aniversário: ${showBirthDate}`}</Text>
-        {Platform.OS === 'android' && <Button title='Selecionar data de aniversário' onPress={() => setShow(true)} />}
+        {Platform.OS === 'android' && (
+          <Button title='Selecionar data de aniversário' onPress={() => setShowDatePicker(true)} />
+        )}
       </View>
-      {(show || Platform.OS === 'ios') && (
+      {showDatePicker && (
         <DateTimePicker
           testID='dateTimePicker'
           value={new Date()}
           mode={'date'}
           is24Hour={true}
           display='default'
-          onChange={onChangeHandler}
+          onChange={handleDatePickerChange}
         />
       )}
 
@@ -98,7 +95,7 @@ export const UserSignUpScreen = (props: { componentId: string }) => {
         {loading && <ActivityIndicator />}
         <Text style={styles.buttonText}>{loading ? 'Carregando' : 'Cadastrar'}</Text>
       </Pressable>
-      {showMessage && <Text>{message}</Text>}
+      {showMessageValidation && <Text>{messageValidation}</Text>}
     </View>
   );
 };

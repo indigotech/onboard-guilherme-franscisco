@@ -8,7 +8,7 @@ import { FAB } from 'react-native-paper';
 
 const limit = 10;
 
-export const UserListScreen = (props: { componentId: string }) => {
+export const UserListScreen = () => {
   const offsetRef = useRef(0);
 
   const [users, setUser] = React.useState<UserType[]>([]);
@@ -38,17 +38,23 @@ export const UserListScreen = (props: { componentId: string }) => {
       </>
     );
   };
-  const changeNavigation = () => {
-    Navigation.push(props.componentId, {
-      component: {
-        name: 'UserSignUpScreen',
+  const handleFABPress = () => {
+    Navigation.showModal({
+      stack: {
+        children: [
+          {
+            component: {
+              name: 'UserSignUpScreen',
+            },
+          },
+        ],
       },
     });
   };
 
   return (
     <View style={styles.container}>
-      <FAB style={styles.fab} small icon='plus' onPress={changeNavigation} />
+      <FAB style={styles.fab} small icon='plus' onPress={handleFABPress} />
       <FlatList data={users} onEndReached={handleEndReached} keyExtractor={(item) => item.id} renderItem={renderItem} />
       {error ?? <Text>{error}</Text>}
       {loading && <ActivityIndicator color='black' />}

@@ -9,7 +9,7 @@ export const signUpValidations = (name: string, phone: string, birthDate: Date, 
   } else if (!phone.match('^[0-9]*$')) {
     return ['Apenas números no telefone', false];
   } else if (phone.length < 11) {
-    return ['Coloque o DD no telefone', false];
+    return ['Coloque o DDD no telefone', false];
   } else if (birthDate > new Date() || birthYear < currentYear - 100) {
     return ['Insira uma data válida', false];
   } else {
