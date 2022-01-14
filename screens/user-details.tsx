@@ -33,7 +33,7 @@ export const UserDetails = (props: { id: string }) => {
         <View style={styles.wrapper}>
           <Avatar.Text label={`${user.name.substring(0, 2)}`} />
           <Headline>{user.name}</Headline>
-          <Subheading>{user.birthDate}</Subheading>
+          <Subheading>{user.birthDate.toString().split('-').reverse().join('/')}</Subheading>
           <Subheading>{user.role}</Subheading>
           <Button icon='email' mode='text'>
             {user.email}
