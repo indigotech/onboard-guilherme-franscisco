@@ -1,30 +1,32 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { View, Text, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
 import { useQuery } from '@apollo/client';
 import { getUsers } from '../components/utils/graphql-requests';
 import { UserType } from '../components/interfaces/user-type';
 
+const limit = 10;
+
 export const UserListScreen = () => {
-  const [offset, setOffset] = useState(0);
+  const offsetRef = useRef(0);
 
   const [users, setUser] = React.useState<UserType[]>([]);
 
-  const limit = 10;
-
-  const onCompleted = (data: { users: { nodes: [UserType]; count: number } }) => {
-    setUser((prev) => [...prev, ...data?.users.nodes]);
+  const handleEndReached = () => {
+    if (!loading && !error) {
+      offsetRef.current += limit;
+      refetch({ offset: offsetRef.current });
+    }
   };
-  const { loading, error, data } = useQuery(getUsers, {
-    variables: { offset: offset },
+
+  const onCompleted = (newData: { users: { nodes: [UserType]; count: number } }) => {
+    setUser((prev) => [...prev, ...newData?.users.nodes]);
+  };
+
+  const { loading, error, refetch } = useQuery(getUsers, {
+    variables: { offset: offsetRef.current },
     notifyOnNetworkStatusChange: true,
     onCompleted: onCompleted,
   });
-
-  const handleEndReached = () => {
-    if (data !== undefined && users.length + limit < data.users.count) {
-      setOffset(offset + limit);
-    }
-  };
 
   const renderItem = (item: { item: UserType }) => {
     return (
