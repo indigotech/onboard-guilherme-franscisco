@@ -84,7 +84,7 @@ export const UserSignUpScreen = (props: { componentId: string }) => {
         />
       )}
 
-      <Input changeInputHandler={(input: string) => setEmail(input)} input={email} inputLabel={'Email'} />
+      <Input changeInputHandler={(input) => setEmail(input)} input={email} inputLabel={'Email'} />
 
       <Picker selectedValue={role} onValueChange={(itemValue: React.SetStateAction<UserRoler>) => setRole(itemValue)}>
         <Picker.Item label='Usuário' value={UserRoler.user} />
