@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { View, Text, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
 import { useQuery } from '@apollo/client';
 import { getUsers } from '../components/utils/graphql-requests';
+import { UserType } from '../components/interfaces/user-type';
 
 export const UserListScreen = () => {
   const [offset, setOffset] = useState(0);
 
-  const [users, setUser] = useState([]);
+  const [users, setUser] = React.useState<UserType[]>([]);
 
-  const onCompleted = (data: any) => {
-    console.log(data);
-    setUser((prev) => [...prev, ...data?.users.nodes] as any);
+  const limit = 10;
+
+  const onCompleted = (data: { users: { nodes: [UserType]; count: number } }) => {
+    setUser((prev) => [...prev, ...data?.users.nodes]);
   };
   const { loading, error, data } = useQuery(getUsers, {
     variables: { offset: offset },
@@ -19,12 +21,12 @@ export const UserListScreen = () => {
   });
 
   const handleEndReached = () => {
-    if (users.length + 10 < data?.users.count) {
-      setOffset(offset + 10);
+    if (data !== undefined && users.length + limit < data.users.count) {
+      setOffset(offset + limit);
     }
   };
 
-  const renderItem = (item: any) => {
+  const renderItem = (item: { item: UserType }) => {
     return (
       <>
         <Text style={styles.item}>{`Nome : ${item.item.name}`}</Text>
@@ -35,12 +37,7 @@ export const UserListScreen = () => {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={users}
-        onEndReached={handleEndReached}
-        keyExtractor={(_item, index) => String(index)}
-        renderItem={renderItem}
-      />
+      <FlatList data={users} onEndReached={handleEndReached} keyExtractor={(item) => item.id} renderItem={renderItem} />
       {error ?? <Text>{error}</Text>}
       {loading && <ActivityIndicator color='black' />}
     </View>
