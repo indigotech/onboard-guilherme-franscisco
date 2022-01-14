@@ -69,11 +69,8 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
-<<<<<<< HEAD
 		<string>antfill.ttf</string>
 		<string>antoutline.ttf</string>
-=======
->>>>>>> 74dae2a (Added forms in order to save more users)
 	</array>
 </dict>
 </plist>

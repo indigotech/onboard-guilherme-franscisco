@@ -14,10 +14,7 @@
     "@apollo/client": "3.5.6",
     "@react-native-community/async-storage": "1.12.1",
     "@react-native-picker/picker": "2.2.1",
-<<<<<<< HEAD
     "babel-plugin-optional-require": "0.3.1",
-=======
->>>>>>> 74dae2a (Added forms in order to save more users)
     "graphql": "16.2.0",
     "@react-native-community/datetimepicker": "5.1.0",
     "react": "17.0.2",
