@@ -9,13 +9,14 @@ export const loginMutation = gql`
 `;
 
 export const getUsers = gql`
-  query {
-    users {
+  query getUsers($offset: Int!) {
+    users(pageInfo: { offset: $offset }) {
       nodes {
         id
         name
         email
       }
+      count
     }
   }
 `;
