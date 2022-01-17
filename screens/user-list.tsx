@@ -47,7 +47,7 @@ export const UserListScreen = (props: { componentId: string }) => {
         <Text style={styles.item}>{`Nome : ${item.item.name}`}</Text>
         <Text style={styles.item}>{`Email : ${item.item.email}`}</Text>
         <Button mode='outlined' onPress={() => handleButtonPress(item.item.id)}>
-          {'Ver perfil'}
+          Ver perfil
         </Button>
       </View>
     );

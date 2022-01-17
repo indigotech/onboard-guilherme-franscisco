@@ -2,28 +2,20 @@ import { useQuery } from '@apollo/client';
 import React from 'react';
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import { Avatar, Button, Headline, Subheading } from 'react-native-paper';
-import { UserType } from '../components/interfaces/user-type';
 import { getUser } from '../components/utils/graphql-requests';
 
 export const UserDetails = (props: { id: string }) => {
-  const [user, setUser] = React.useState<UserType>({
-    id: '',
-    name: '',
-    email: '',
-    phone: '',
-    birthDate: new Date(),
-    password: '',
-    role: '',
-  });
-
-  const onCompleted = (data: { user: UserType }) => {
-    setUser(data.user);
-  };
-
-  const { loading, error } = useQuery(getUser, {
+  const { data, loading, error } = useQuery(getUser, {
     variables: { id: props.id },
-    onCompleted: onCompleted,
   });
+
+  const translateRole = () => {
+    if (data?.user.role === 'user') {
+      return 'Usuário';
+    } else if (data?.user.role === 'admin') {
+      return 'Administrador';
+    }
+  };
 
   return (
     <View>
@@ -31,15 +23,15 @@ export const UserDetails = (props: { id: string }) => {
         <ActivityIndicator color='black' />
       ) : (
         <View style={styles.wrapper}>
-          <Avatar.Text label={`${user.name.substring(0, 2)}`} />
-          <Headline>{user.name}</Headline>
-          <Subheading>{user.birthDate.toString().split('-').reverse().join('/')}</Subheading>
-          <Subheading>{user.role}</Subheading>
+          <Avatar.Text label={`${data.user.name.substring(0, 2)}`} />
+          <Headline>{data.user.name}</Headline>
+          <Subheading>{data.user.birthDate.toString().split('-').reverse().join('/')}</Subheading>
+          <Subheading>{translateRole()}</Subheading>
           <Button icon='email' mode='text'>
-            {user.email}
+            {data.user.email}
           </Button>
           <Button icon='phone' mode='text'>
-            {user.phone}
+            {data.user.phone}
           </Button>
         </View>
       )}
