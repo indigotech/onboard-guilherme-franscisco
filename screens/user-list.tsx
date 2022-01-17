@@ -3,6 +3,8 @@ import { View, Text, FlatList, StyleSheet, ActivityIndicator } from 'react-nativ
 import { useQuery } from '@apollo/client';
 import { getUsers } from '../components/utils/graphql-requests';
 import { UserType } from '../components/interfaces/user-type';
+import { Navigation } from 'react-native-navigation';
+import { FAB } from 'react-native-paper';
 
 const limit = 10;
 
@@ -36,9 +38,23 @@ export const UserListScreen = () => {
       </>
     );
   };
+  const handleFABPress = () => {
+    Navigation.showModal({
+      stack: {
+        children: [
+          {
+            component: {
+              name: 'UserSignUpScreen',
+            },
+          },
+        ],
+      },
+    });
+  };
 
   return (
     <View style={styles.container}>
+      <FAB style={styles.fab} small icon='plus' onPress={handleFABPress} />
       <FlatList data={users} onEndReached={handleEndReached} keyExtractor={(item) => item.id} renderItem={renderItem} />
       {error ?? <Text>{error}</Text>}
       {loading && <ActivityIndicator color='black' />}
@@ -55,5 +71,12 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 14,
     height: 44,
+  },
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    zIndex: 5,
   },
 });

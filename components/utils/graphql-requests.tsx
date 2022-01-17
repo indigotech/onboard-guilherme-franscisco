@@ -20,3 +20,11 @@ export const getUsers = gql`
     }
   }
 `;
+
+export const createUser = gql`
+  mutation createUser($name: String!, $phone: String!, $birthDate: Date!, $email: String!, $role: UserRole!) {
+    createUser(data: { name: $name, phone: $phone, birthDate: $birthDate, email: $email, role: $role }) {
+      name
+    }
+  }
+`;
