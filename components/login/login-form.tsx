@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { Text, View, Pressable, ActivityIndicator } from 'react-native';
-import { Input } from '../utils/input';
-import { StyleSheet } from 'react-native';
+import { ActivityIndicator } from 'react-native';
+import { Input } from '../styled-components/input';
 import { useMutation } from '@apollo/client';
 import { AsyncStorage } from 'react-native';
 import { loginMutation } from '../utils/graphql-requests';
 import { Navigation } from 'react-native-navigation';
 import { loginValidation } from './login-validations';
+import styled from 'styled-components/native';
+import { Button, ButtonText } from '../styled-components/button';
+import { Header } from '../styled-components/header';
+import { Caption } from '../styled-components/caption';
 
 export const LoginForms = (props: { componentId: string }) => {
   const [email, setEmail] = useState('');
@@ -48,10 +51,8 @@ export const LoginForms = (props: { componentId: string }) => {
   };
 
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.header}>
-        <Text>{'Bem-vindo(a) à Taqtile!'}</Text>
-      </View>
+    <Wrapper>
+      <Header>{'Bem-vindo(a) à Taqtile!'}</Header>
       <Input changeInputHandler={(input: string) => setEmail(input)} input={email} inputLabel={'Email'} />
       <Input
         changeInputHandler={(input: string) => setPassword(input)}
@@ -59,32 +60,16 @@ export const LoginForms = (props: { componentId: string }) => {
         inputLabel={'Senha'}
         secureTextEntry={true}
       />
-      <Pressable style={styles.button} onPress={handlePress} disabled={isLoading}>
+      <Button onPress={handlePress} disabled={isLoading}>
         {isLoading && <ActivityIndicator />}
-        <Text style={styles.buttonText}>{isLoading ? 'Carregando' : 'Entrar'}</Text>
-      </Pressable>
-      {showMessage && <Text>{message}</Text>}
-    </View>
+        <ButtonText>{isLoading ? 'Carregando' : 'Entrar'}</ButtonText>
+      </Button>
+      {showMessage && <Caption>{message}</Caption>}
+    </Wrapper>
   );
 };
-
-const styles = StyleSheet.create({
-  wrapper: {
-    padding: '10%',
-  },
-  header: {
-    paddingTop: '50%',
-    alignItems: 'center',
-  },
-  button: {
-    marginTop: '10%',
-    backgroundColor: '#a835de',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: '5%',
-    borderRadius: 10,
-  },
-  buttonText: {
-    color: 'white',
-  },
-});
+const Wrapper = styled.View`
+  padding-top: 30%;
+  padding-left: 10%;
+  padding-right: 10%;
+`;

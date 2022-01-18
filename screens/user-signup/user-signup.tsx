@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { ActivityIndicator, Button, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Button, Platform, Text, View } from 'react-native';
 import { UserRoler } from '../../components/serializes/user-roles';
-import { Input } from '../../components/utils/input';
+import { Input } from '../../components/styled-components/input';
 import { Picker } from '@react-native-picker/picker';
 import { useMutation } from '@apollo/client';
 import { createUser } from '../../components/utils/graphql-requests';
 import { signUpValidations } from './user-signup-validations';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Navigation } from 'react-native-navigation';
+import styled from 'styled-components/native';
+import { Caption } from '../../components/styled-components/caption';
 
 export const UserSignUpScreen = (props: { componentId: string }) => {
   const [name, setName] = useState('');
@@ -63,7 +65,7 @@ export const UserSignUpScreen = (props: { componentId: string }) => {
   };
 
   return (
-    <View style={styles.wrapper}>
+    <Wrapper>
       <Input changeInputHandler={(input: string) => setName(input)} input={name} inputLabel={'Nome'} />
       <Input changeInputHandler={(input: string) => setPhone(input)} input={phone} inputLabel={'Telefone'} />
 
@@ -91,29 +93,29 @@ export const UserSignUpScreen = (props: { componentId: string }) => {
         <Picker.Item label='Administrador' value={UserRoler.admin} />
       </Picker>
 
-      <Pressable style={styles.button} onPress={handlePress} disabled={loading}>
+      <Pressable onPress={handlePress} disabled={loading}>
         {loading && <ActivityIndicator />}
-        <Text style={styles.buttonText}>{loading ? 'Carregando' : 'Cadastrar'}</Text>
+        <PressableText>{loading ? 'Carregando' : 'Cadastrar'}</PressableText>
       </Pressable>
-      {showMessageValidation && <Text>{messageValidation}</Text>}
-    </View>
+      {showMessageValidation && <Caption>{messageValidation}</Caption>}
+    </Wrapper>
   );
 };
 
-const styles = StyleSheet.create({
-  wrapper: {
-    padding: '10%',
-  },
-  button: {
-    padding: '5%',
-    paddingLeft: '10%',
-    marginTop: '10%',
-    backgroundColor: '#a835de',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 10,
-  },
-  buttonText: {
-    color: 'white',
-  },
-});
+const Wrapper = styled.View`
+  padding: 10%;
+`;
+
+const Pressable = styled.Pressable`
+  padding: 5%;
+  padding-left: 10%;
+  margin-top: 10%;
+  background-color: #a835de;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+`;
+
+const PressableText = styled.Text`
+  color: white;
+`;

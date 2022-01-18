@@ -13,6 +13,6 @@ export const signUpValidations = (name: string, phone: string, birthDate: Date, 
   } else if (birthDate > new Date() || birthYear < currentYear - 100) {
     return ['Insira uma data válida', false];
   } else {
-    return ['Cadastro feito com sucesso', true];
+    return ['', true];
   }
 };
